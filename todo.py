@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import sqlite3 as sql
+import sqlite3
 
 app = Flask(__name__)
 
@@ -19,36 +19,34 @@ def signin():
 def createlist():
 	return render_template("createlist.html")
 
-@app.route("/tasks",methods=['POST','GET'])
+@app.route("/tasks",methods=['POST'])
 def tasks():
-	if request.method =='POST':
-		try:
-			task = request.form["task"]
-			with sql.connect("todolist.db") as conn:
-				cur = conn.cursor()
-
-				cur.execute("INSERT INTO list(task) VALUES(?)",(task))
-				conn.commit()
-				msg = "Record successfully added"
-		except:
-			conn.rollback()
-			msg="error in insert operation"
-		finally:
-			msg = "Record successfully added"		
-			return render_template("result.html")
-			conn.close()
+	try:
+		conn = sqlite3.connect("todolist.db")
+		cur = conn.cursor()
+		current_task = request.form["task"]
+		cur.execute("insert into list (task) values (?)", [current_task])
+		conn.commit()
+		msg = "Record successfully added"
+	except:
+		conn.rollback()
+		msg="error in insert operation"
+	finally:		
+		return render_template("result.html",msg = msg)
+		conn.close()
 
 @app.route("/createdlist")
 def createdlist():	
-   		con = sql.connect("todolist.db")
-   		con.row_factory = sql.Row
+   		con = sqlite3.connect("todolist.db")
+   		con.row_factory = sqlite3.Row
    		
    		cur = con.cursor()
    		cur.execute("select * from list")
     	
-		rows = cur.fetchall();
+		rows = cur.fetchall()
    		return render_template("createdlist.html",rows = rows)
    		con.close()
+
 
 if __name__ == "__main__ ":
 	app.run(debug=True)
