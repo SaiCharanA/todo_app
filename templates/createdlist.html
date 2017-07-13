@@ -18,17 +18,22 @@
 	    		<a href="/"><img src="https://cdn8.staztic.com/app/a/912/912509/todo-task-list-note-reminder-617119-l-140x140.png" alt="Todo list App" class="img-rounded" width="75" height="75"></a>
 	    	</div>
 
-	    	<div class="jumbotron">
+	    	<div class="jumbotron" style="text-align:left">
 	    		<h3>List of tasks</h3>
 	    		{% for row in rows %}
 	    			<ul style = "list-style : None" >      
-          				<li>{{row["task"]}}</li>
+          				<li >{{row["task"]}}
+                        <button onclick="Edittask( {{row["id"]}} )" type="submit">Edit</button>
+                        <button onclick="Deletetask( {{row["id"]}} )" type="submit">Delete</button>
+                        </li>
           			</ul>
           		{% endfor %}
                 
       			<h5><a href = "createlist">Add another task</a></h5>
       		</div>
     	</div>
+      <script src="static/jquery.js"></script>
+      <script src="static/createlist.js"></script>
   	</body>
 </html>
 

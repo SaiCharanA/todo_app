@@ -21,12 +21,12 @@
 
 	        <div class="jumbotron">
                 <h1>Todo List App</h1>
-                <form class="form-signup">
-                    <input type="name" name="Name" id="inputName" class="form-control" placeholder="Name" required autofocus>
-                    <input type="email" name="Email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                    <input type="password" name="Password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <form class="form-signup" action="{{ url_for('signupdetails') }}" method = "POST">
+                    <input type="name" name="username" id="inputName" class="form-control" autocomplete="off" placeholder="Name" required autofocus>
+                    <input type="email" name="email" id="inputEmail" class="form-control" autocomplete="off" placeholder="Email address" required autofocus>
+                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
          
-                    <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">Sign up</button>
+                    <input id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="submit" value="Sign up">
                 </form>
             </div>
         </div>
