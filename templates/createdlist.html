@@ -8,27 +8,27 @@
   	</head>
 
   	<body style="background-color: #ECE">
-  		<div class="container">
+  		<div class="container-fluid">
   			<div class="header">
   				<nav>
   					<ul class="nav nav-pills pull-right">
   						<li role="presentation" class="active"><a href="createdlist">Mytasks</a></li>
+                        <li role="presentation"><a href="signedin">Hi {{ loggedin_username }}</a></li>
+                        <li><a href="signout">Signout</a></li>
                     </ul>
                 </nav>
-	    		<a href="/"><img src="https://cdn8.staztic.com/app/a/912/912509/todo-task-list-note-reminder-617119-l-140x140.png" alt="Todo list App" class="img-rounded" width="75" height="75"></a>
+	    		<a href="signedin"><img src="https://cdn8.staztic.com/app/a/912/912509/todo-task-list-note-reminder-617119-l-140x140.png" alt="Todo list App" class="img-rounded" width="75" height="75"></a>
 	    	</div>
 
 	    	<div class="jumbotron" style="text-align:left">
-	    		<h3>List of tasks</h3>
+	    		<h3>List of tasks</h3> 
 	    		{% for row in rows %}
-	    			<ul style = "list-style : None" >      
-          				<li >{{row["task"]}}
-                        <button onclick="Edittask( {{row["id"]}} )" type="submit">Edit</button>
-                        <button onclick="Deletetask( {{row["id"]}} )" type="submit">Delete</button>
-                        </li>
-          			</ul>
-          		{% endfor %}
-                
+                    <div id = {{row["id"]}} class = "taskblock" >      
+          			<p id = {{row["id"]}} class="taskname" style="font-size:15px"> {{row["task"]}}</p>
+                    <button id = {{row["id"]}} class = "edittask" type="submit">Edit</button>
+                    <button id = {{row["id"]}} class = "deletetask" type="submit">Delete</button>
+                    </div>
+                {% endfor %}
       			<h5><a href = "createlist">Add another task</a></h5>
       		</div>
     	</div>

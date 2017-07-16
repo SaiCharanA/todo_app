@@ -1,7 +1,7 @@
 <!Doctype html>
 <html>
 	<head>
-		<title>todo:My Lists</title>
+		<title>todo:Create task</title>
 		<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
         
@@ -9,20 +9,22 @@
     </head>
 
     <body style="background-color: #ECE">
-  	<div class="container">
+  	<div class="container-fluid">
   		<div class="header">
   		<nav>
   			<ul class="nav nav-pills pull-right">
                 <li role="presentation" class="active"><a href="createlist">Createtask</a></li>
   				<li role="presentation"><a href="createdlist">Mytasks</a></li>
+                <li role="presentation"><a href="signedin">Hi {{ loggedin_username }}</a></li>
+                <li><a href="signout">Signout</a></li>
             </ul>
 	    </nav>
-	    <a href="/"><img src="https://cdn8.staztic.com/app/a/912/912509/todo-task-list-note-reminder-617119-l-140x140.png" alt="Todo list App" class="img-rounded" width="75" height="75"></a>
+	    <a href="signedin"><img src="https://cdn8.staztic.com/app/a/912/912509/todo-task-list-note-reminder-617119-l-140x140.png" alt="Todo list App" class="img-rounded" width="75" height="75"></a>
 	    </div>
 
 	    <div class="jumbotron">
             <form action = "{{ url_for('tasks') }}" method = "POST">
-                <input id="myinput" type="text" autocomplete = "off" name="task" placeholder="Enter the task">
+                <input id="myinput" type="text" autocomplete = "off" name="task" placeholder="Enter the task" required>
                 <input type="submit" value="add">
             </form>
         </div>

@@ -1,2 +1,0 @@
- action="{{ url_for('emailpassword') }}" method = "POST"
- action = "{{ url_for ('signindetails') }}" method = "POST"

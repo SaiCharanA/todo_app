@@ -8,20 +8,24 @@
     </head>
 
     <body style="background-color: #ECE">
-        <div class="container">
+        <div class="container-fluid">
             <div class="header">
                 <nav>
                     <ul class="nav nav-pills pull-right">
                         <li role="presentation"><a href="createlist">Createtask</a></li>
 	                    <li role="presentation"><a href="createdlist">Mytasks</a></li>
+                        <li role="presentation"><a href="signin">Signin</a></li>
                     </ul>
 	            </nav>
-	            <a href="/"><img src="https://cdn8.staztic.com/app/a/912/912509/todo-task-list-note-reminder-617119-l-140x140.png" alt="Todo list App" class="img-rounded" width="75" height="75"></a>
+	            <a href="signedin"><img src="https://cdn8.staztic.com/app/a/912/912509/todo-task-list-note-reminder-617119-l-140x140.png" alt="Todo list App" class="img-rounded" width="75" height="75"></a>
 	       </div>
 
 	        <div class="jumbotron">
                 <h1>Todo List App</h1>
                 <form class="form-signup" action="{{ url_for('signupdetails') }}" method = "POST">
+                    {% if msg %}
+                    {{ msg }}
+                    {% endif %}
                     <input type="name" name="username" id="inputName" class="form-control" autocomplete="off" placeholder="Name" required autofocus>
                     <input type="email" name="email" id="inputEmail" class="form-control" autocomplete="off" placeholder="Email address" required autofocus>
                     <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>

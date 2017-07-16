@@ -1,14 +1,14 @@
 <!DOCTYPE html>
   <html>
     <head>
-      <title>todo list</title>
+      <title>todo: {{ loggedin_username }}</title>
       <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
       <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
       
     </head>
     <body style="background-color: #ECE">
-        <div class=container-fluid>
-            <div class=header>
+        <div class="container-fluid">
+            <div class="header">
                 <nav>
                     <ul class="nav nav-pills pull-right">
                         <li role="presentation"><a href="createdlist">Mytasks</a></li>
@@ -21,8 +21,15 @@
       
         <div class="jumbotron">
             <h1>Todo List App</h1>
-   		    {{ msg }}
-      		<h5><a href = "createlist">Add another task</a></h5>
-      	</div>  
-   	</body>
-</html>
+            <p><a class="btn btn-lg btn-success" href="createlist" role="button">Add a task to do</a></p>
+        </div>
+
+        <div class="row marketing">
+            <div class="col-lg-6">
+                <h4>Todo List</h4>
+                <p>Helps you achieve your goals</p>
+            </div>
+        </div>
+
+    </body>
+ </html>
