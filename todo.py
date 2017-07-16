@@ -146,10 +146,13 @@ def createdlist():
    		
    		cur = conn.cursor()
    		cur.execute("select * from list where email = ?", (loggedin_email,) )
-    	
-		rows = cur.fetchall()
-   		return render_template("createdlist.html",rows = rows,loggedin_username = loggedin_username)
-   		conn.close()
+   		list_rows = cur.fetchall()
+		cur.execute("select * from completedtasks where email = ?", (loggedin_email,) )
+		completed_rows = cur.fetchall()
+		cur.execute("select * from deletedtasks where email = ?", (loggedin_email,) )
+		deleted_rows = cur.fetchall()
+		return render_template("createdlist.html",list_rows = list_rows,completed_rows=completed_rows,deleted_rows=deleted_rows,loggedin_username = loggedin_username)
+		conn.close()
    	else:
    		msg = "Please login to show your list of tasks"
    		return render_template("signin.html",msg = msg)
@@ -180,6 +183,7 @@ def removetask():
 		taskid = request.form['taskid']
 		conn = sqlite3.connect("todolist.db")
 		cur = conn.cursor()
+		cur.execute("insert into deletedtasks select * from list where id = ?",(taskid,))
 		cur.execute("delete from list where id = ?",(taskid,))
 
 		conn.commit()
@@ -191,6 +195,24 @@ def removetask():
 		return (msg)
 		conn.close()
 #######################################################################
+@app.route("/finishtask",methods=['POST'])
+def finishtask():
+	try:
+		taskid = request.form['taskid']
+		conn = sqlite3.connect("todolist.db")
+		cur = conn.cursor()
+		cur.execute("insert into completedtasks select * from list where id = ?",(taskid,))
+		cur.execute("delete from list where id = ?",(taskid,))
+
+		conn.commit()
+		msg = "task completed"
+	except:
+		conn.rollback()
+		msg = "error in delete operation"
+	finally:	
+		return (msg)
+		conn.close()
+######################################################################
 @app.route("/signedin")
 def signedin():
 	if (loggedin_username):

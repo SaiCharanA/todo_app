@@ -12,6 +12,7 @@
   			<div class="header">
   				<nav>
   					<ul class="nav nav-pills pull-right">
+                        <li role="presentation"><a href="createlist">Createtask</a></li>
   						<li role="presentation" class="active"><a href="createdlist">Mytasks</a></li>
                         <li role="presentation"><a href="signedin">Hi {{ loggedin_username }}</a></li>
                         <li><a href="signout">Signout</a></li>
@@ -21,16 +22,29 @@
 	    	</div>
 
 	    	<div class="jumbotron" style="text-align:left">
-	    		<h3>List of tasks</h3> 
-	    		{% for row in rows %}
-                    <div id = {{row["id"]}} class = "taskblock" >      
+	    		<h3>Tasks to-do:</h3> 
+	    		{% for row in list_rows %}
+                    <div id = {{row["id"]}} class="listblock" >      
           			<p id = {{row["id"]}} class="taskname" style="font-size:15px"> {{row["task"]}}</p>
+                    <button id = {{row["id"]}} class = "completetask" type="submit">Completed</button>
                     <button id = {{row["id"]}} class = "edittask" type="submit">Edit</button>
                     <button id = {{row["id"]}} class = "deletetask" type="submit">Delete</button>
                     </div>
                 {% endfor %}
-      			<h5><a href = "createlist">Add another task</a></h5>
+                <h3>Tasks Completed:</h3>
+                {% for row in completed_rows %}
+                    <ul id = {{row["id"]}} class="completeblock" type="none">      
+                        <li style="font-size:15px"> {{row["task"]}}</li>
+                    </ul>
+                {% endfor %}
+                <h3>Tasks Deleted:</h3>
+                {% for row in deleted_rows %}
+                    <ul id = {{row["id"]}} class="deleteblock" type="none">      
+                        <li style="font-size:15px"> {{row["task"]}}</li>
+                    </ul>
+                {% endfor %}
       		</div>
+            </div>
     	</div>
       <script src="static/jquery.js"></script>
       <script src="static/createlist.js"></script>
