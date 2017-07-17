@@ -32,17 +32,17 @@
                     </div>
                 {% endfor %}
                 <h3>Tasks Completed:</h3>
-                {% for row in completed_rows %}
-                    <ul id = {{row["id"]}} class="completeblock" type="none">      
+                    <ul class="completeblock" type="none">
+                    {% for row in completed_rows %}      
                         <li style="font-size:15px"> {{row["task"]}}</li>
+                    {% endfor %}
                     </ul>
-                {% endfor %}
                 <h3>Tasks Deleted:</h3>
-                {% for row in deleted_rows %}
-                    <ul id = {{row["id"]}} class="deleteblock" type="none">      
+                    <ul class="deleteblock" type="none">
+                    {% for row in deleted_rows %}     
                         <li style="font-size:15px"> {{row["task"]}}</li>
+                    {% endfor %}
                     </ul>
-                {% endfor %}
       		</div>
             </div>
     	</div>
