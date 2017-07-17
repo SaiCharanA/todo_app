@@ -32,7 +32,7 @@ $(document).ready(function(){
 				$('div'+'#'+task_id+'.listblock').remove();
 				$('ul'+'.completeblock').append("<li style='font-size:15px'>"+current_task+"</li>");
 				$.ajax({
-					url : "/completetask",
+					url : "/finishtask",
 					type : "POST",
 					data : {taskid:task_id},
 				});
