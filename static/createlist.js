@@ -14,6 +14,10 @@ $(document).ready(function(){
 						url : "/updatetask",
 						type : "POST",
 						data : {taskid:task_id,updatedtask:updated_task},
+						success: function(data){
+							$('.jumbotron').append('<p>'+data+'</p>');
+							return;
+						}
 					});
 					return;	
 				}
