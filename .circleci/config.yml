@@ -45,10 +45,10 @@ jobs:
       # https://pytest.org
       # https://nose.readthedocs.io
       - run:
-          name: run tests
+          name: run prod
           command: |
             . venv/bin/activate
-            python manage.py test
+            export FLASK_APP=todo.py flask run
 
       - store_artifacts:
           path: test-reports
